@@ -11,14 +11,14 @@ Plays an automated game of Bejeweled. Be sure to read the _CAUTION_ section belo
 - [pygame](http://www.pygame.org/) - used for displaying recognized gems
 
 ## 2. Anchor
-The game is automatically detected by its border colour, as long as it is in the following range:
+The game is automatically detected by its border colour, as long as the border of the game is in the following range:
 
-- Horizontally: 1/3
-- Vertically: 1/2
+- Horizontally: 1/3 of screen width
+- Vertically: 1/2 of screen height
 
 ![](https://raw.github.com/captainfox/bejeweled-bot/master/screen.png)
 
-The bot starts playing from the "Play now" screen, and will start the game itself from then on.
+The bot starts playing from the "Play now" screen, and will start the game itself from then on. Don't move the game after you started the bot or no gems will be recognized.
 
 
 ## 3. "Algorithm"
