@@ -13,8 +13,8 @@ import sys
 import pygame
 
 ### constants ###
-    SLEEPING_TIME = 0.02
-    MAX_MOVES = 5
+SLEEPING_TIME = 0.02
+MAX_MOVES = 5
 
 ### input helpers ###
 
@@ -160,10 +160,12 @@ def main():
     time.sleep(5)
     click(2, 7) # "play now"
     time.sleep(1)
-
-    while True:
+    board = get_board()
+    t = time.time()
+    
+    while (time.time() - t) < 70:
         if get_field(2, 4) == (60, 109, 118) or not board_valid(board):
-            break # "time up"
+            break # "time up" board corrupted
         board = get_board()
         draw_board()
         
@@ -174,25 +176,25 @@ def main():
             for x in range(0, 8):
                 if moves >= MAX_MOVES: break
                 if same_gem(x, y, x-1, y): # two gems next to each other, horizontal
-                    if same_gem(x, y, x+1, y-1): move_fields(x+1, y, x+1, y-1, 'a') # right
-                    if same_gem(x, y, x+2, y): move_fields(x+1, y, x+2, y, 'b')
-                    if same_gem(x, y, x+1, y+1): move_fields(x+1, y, x+1, y+1, 'c')
-                    if same_gem(x, y, x-2, y-1): move_fields(x-2, y, x-2, y-1, 'd') # left
-                    if same_gem(x, y, x-2, y+1): move_fields(x-2, y, x-2, y+1, 'e')
-                    if same_gem(x, y, x-3, y): move_fields(x-2, y, x-3, y, 'f')
+                    if same_gem(x, y, x+1, y-1): move_fields(x+1, y, x+1, y-1) # right
+                    if same_gem(x, y, x+2, y): move_fields(x+1, y, x+2, y)
+                    if same_gem(x, y, x+1, y+1): move_fields(x+1, y, x+1, y+1)
+                    if same_gem(x, y, x-2, y-1): move_fields(x-2, y, x-2, y-1) # left
+                    if same_gem(x, y, x-2, y+1): move_fields(x-2, y, x-2, y+1)
+                    if same_gem(x, y, x-3, y): move_fields(x-2, y, x-3, y)
                 if same_gem(x, y, x, y-1): # two gems next to each other, vertical
-                    if same_gem(x, y, x+1, y+1): move_fields(x, y+1, x+1, y+1, 'g') # below
-                    if same_gem(x, y, x, y+2): move_fields(x, y+1, x, y+2, 'h')
-                    if same_gem(x, y, x-1, y+1): move_fields(x, y+1, x-1, y+1, 'i')
-                    if same_gem(x, y, x-1, y-2): move_fields(x, y-2, x-1, y-2, 'j') # above
-                    if same_gem(x, y, x+1, y-2): move_fields(x, y-2, x+1, y-2, 'k')
-                    if same_gem(x, y, x, y-3): move_fields(x, y-2, x, y-3, 'l')
+                    if same_gem(x, y, x+1, y+1): move_fields(x, y+1, x+1, y+1) # below
+                    if same_gem(x, y, x, y+2): move_fields(x, y+1, x, y+2)
+                    if same_gem(x, y, x-1, y+1): move_fields(x, y+1, x-1, y+1)
+                    if same_gem(x, y, x-1, y-2): move_fields(x, y-2, x-1, y-2) # above
+                    if same_gem(x, y, x+1, y-2): move_fields(x, y-2, x+1, y-2)
+                    if same_gem(x, y, x, y-3): move_fields(x, y-2, x, y-3)
                 if same_gem(x, y, x-2, y): # gem in the middle is missing, horizontal
-                    if same_gem(x, y, x-1, y-1): move_fields(x-1, y, x-1, y-1, 'm')
-                    if same_gem(x, y, x-1, y+1): move_fields(x-1, y, x-1, y+1, 'n')
+                    if same_gem(x, y, x-1, y-1): move_fields(x-1, y, x-1, y-1)
+                    if same_gem(x, y, x-1, y+1): move_fields(x-1, y, x-1, y+1)
                 if same_gem(x, y, x, y-2): # gem in the middle is missing, vertical
-                    if same_gem(x, y, x-1, y-1): move_fields(x, y-1, x-1, y-1, 'o')
-                    if same_gem(x, y, x+1, y-1): move_fields(x, y-1, x+1, y-1, 'p')
+                    if same_gem(x, y, x-1, y-1): move_fields(x, y-1, x-1, y-1)
+                    if same_gem(x, y, x+1, y-1): move_fields(x, y-1, x+1, y-1)
 					
     print "Game ended."
     

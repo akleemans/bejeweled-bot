@@ -1,15 +1,15 @@
 bejeweled-bot
 ==============
 
-Plays an automated game of Bejeweled.
+Plays an automated game of Bejeweled. Be sure to read the _CAUTION_ section below before using.
 
 ![](https://raw.github.com/captainfox/bejeweled-bot/master/playing.png)
 
-## Requirements
+## 1. Requirements
 
 - [Autopy](http://www.autopy.org/) (OS independent. Windows installers available)
 
-## Anchor
+## 2. Anchor
 The game is automatically detected by its border colour, as long as it is in the following range:
 
 - Horizontally: 1/3
@@ -20,7 +20,7 @@ The game is automatically detected by its border colour, as long as it is in the
 The bot starts playing from the "Play now" screen, and will start the game itself from then on.
 
 
-## "Algorithm"
+## 3. "Algorithm"
 There's only one rule: If a possible move has been found, the program will try to do it.
 The algorithm is really simple/stupid and _not_ optimized in any way.
 
@@ -31,6 +31,18 @@ Here, it would drag down the matching yellow gem:
 Still, it should get 400'000 - 600'000 points on average, more if you'll use Phoenix or another power-up.
 
 
-## Demo
+## 4. Demo
 
 [![](https://raw.github.com/captainfox/bejeweled-bot/master/1million.png)](http://www.youtube.com/watch?v=jUvYuqbRO-I)
+
+## CAUTION
+
+Use at your own risk. Be aware that you're mouse **will not be controllable** while the game is running!
+The program is provided "as is" without warranty of any kind.
+
+Normally the end of the game should be recognized.
+There are 2 fallbacks if the end of the game is not recognized properly:
+
+* The bot will stop automatically after 70 seconds (which should be enough in regular mode. You might tweak that when using sepcial gems.)
+* The bot will stop when you scroll down and big parts of the recognized area are white.
+
