@@ -33,4 +33,4 @@ Still, it should get 400'000 - 600'000 points on average, more if you'll use Pho
 
 ## Demo
 
-[![](https://raw.github.com/captainfox/bejeweled-bot/master/1million.png)](http://www.youtube.com/audio?v=jUvYuqbRO-I)
+[![](https://raw.github.com/captainfox/bejeweled-bot/master/1million.png)](http://www.youtube.com/watch?v=jUvYuqbRO-I)
