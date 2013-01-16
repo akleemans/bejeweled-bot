@@ -8,9 +8,9 @@ Created on 24.12.2012
 '''
 
 import autopy as ap
+import pygame
 import time
 import sys
-import pygame
 
 ### constants ###
 SLEEPING_TIME = 0.02
@@ -163,7 +163,7 @@ def main():
     board = get_board()
     t = time.time()
     
-    while (time.time() - t) < 70:
+    while (time.time() - t) < 75:
         if get_field(2, 4) == (60, 109, 118) or not board_valid(board):
             break # "time up" board corrupted
         board = get_board()

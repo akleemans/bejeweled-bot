@@ -5,9 +5,10 @@ Plays an automated game of Bejeweled. Be sure to read the _CAUTION_ section belo
 
 ![](https://raw.github.com/captainfox/bejeweled-bot/master/playing.png)
 
-## 1. Requirements
+## 1. Dependencies
 
-- [Autopy](http://www.autopy.org/) (OS independent. Windows installers available)
+- [autopy](http://www.autopy.org/) - used for accessing mouse/screen (OS independent. Windows installers available)
+- [pygame](http://www.pygame.org/) - used for displaying recognized gems
 
 ## 2. Anchor
 The game is automatically detected by its border colour, as long as it is in the following range:
@@ -43,6 +44,6 @@ The program is provided "as is" without warranty of any kind.
 Normally the end of the game should be recognized.
 There are 2 fallbacks if the end of the game is not recognized properly:
 
-* The bot will stop automatically after 70 seconds (which should be enough in regular mode. You might tweak that when using sepcial gems.)
+* The bot will stop automatically after 75 seconds (which should be enough in regular mode. You might tweak that when using sepcial gems.)
 * The bot will stop when you scroll down and big parts of the recognized area are white.
 
