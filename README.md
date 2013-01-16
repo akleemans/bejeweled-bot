@@ -29,7 +29,7 @@ Here, it would drag down the matching yellow gem:
 
 ![](https://raw.github.com/captainfox/bejeweled-bot/master/example.png)
 
-Still, it should get 400'000 - 600'000 points on average, more if you'll use Phoenix or another power-up.
+Still, it should get somewhat around 300'000 - 600'000 points on average, more if you use Phoenix or another power-up.
 
 
 ## 4. Demo
@@ -38,7 +38,7 @@ Still, it should get 400'000 - 600'000 points on average, more if you'll use Pho
 
 ## CAUTION
 
-Use at your own risk. Be aware that you're mouse **will not be controllable** while the game is running!
+Use at your own risk. Be aware that your mouse **will not be controllable** while the game is running!
 The program is provided "as is" without warranty of any kind.
 
 Normally the end of the game should be recognized.
