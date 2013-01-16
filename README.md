@@ -10,7 +10,7 @@ Plays an automated game of Bejeweled. Be sure to read the _CAUTION_ section belo
 - [autopy](http://www.autopy.org/) - used for accessing mouse/screen (OS independent. Windows installers available)
 - [pygame](http://www.pygame.org/) - used for displaying recognized gems
 
-## 2. Anchor
+## 2. Anchor and game start
 The game is automatically detected by its border colour, as long as the border of the game is in the following range:
 
 - Horizontally: 1/3 of screen width
@@ -18,7 +18,11 @@ The game is automatically detected by its border colour, as long as the border o
 
 ![](https://raw.github.com/captainfox/bejeweled-bot/master/screen.png)
 
-The bot starts playing from the "Play now" screen, and will start the game itself from then on. Don't move the game after you started the bot or no gems will be recognized.
+The bot **starts playing from the "Play now" screen**, so first load that screen, then start the bot with
+
+    python bejeweled-bot.py
+
+It will start the game itself from then on. Don't move the game after you started the bot or no gems will be recognized.
 
 
 ## 3. "Algorithm"
