@@ -3,11 +3,15 @@
 '''
 Plays a game of Bejeweled Blitz on Facebook.
 
-Created on 24.12.2012
-@author: adrianus
+Created: 24.12.2012
+Updated: Aug 2016
+
+@author: Adrianus Kleemans
 '''
 
 import autopy as ap
+import Quartz.CoreGraphics as CG
+import struct
 import pygame
 import time
 import sys
@@ -15,6 +19,8 @@ import sys
 ### constants ###
 SLEEPING_TIME = 0.02
 MAX_MOVES = 5
+DRAW_CANVAS = False
+MAX_TIME = 75 # for some gems, use up to 160s
 
 ### input helpers ###
 
@@ -46,14 +52,30 @@ def move_fields(x0, y0, x1, y1):
 
 ### screen helpers ###
 
-def get_pixel(x, y):
-    return ap.color.hex_to_rgb(ap.screen.get_color(x, y))
+def capture():
+    global screenshot_width
+    global screenshot_data
+    region = CG.CGRectInfinite
+    # Create screenshot as CGImage
+    image = CG.CGWindowListCreateImage(region, CG.kCGWindowListOptionOnScreenOnly,
+                                       CG.kCGNullWindowID, CG.kCGWindowImageDefault)
+    prov = CG.CGImageGetDataProvider(image)
+    screenshot_data = CG.CGDataProviderCopyData(prov)
+    screenshot_width = CG.CGImageGetWidth(image)
 
+def get_pixel(x, y):
+    x, y = int(x)*2, int(y)*2
+    data_format = "BBBB" #BBBB
+    offset = 4 * ((screenshot_width*int(round(y))) + int(round(x)))
+    b, g, r, a = struct.unpack_from(data_format, screenshot_data, offset=offset)
+    return (r, g, b)
+    
 def get_field(x, y):
     x, y = board_to_pixel(x, y)
-    return ap.color.hex_to_rgb(ap.screen.get_color(x, y))
+    return get_pixel(x, y)
 
 def get_board():
+    capture()
     board = []
     for y in range(0, 8):
         board.append([])
@@ -136,9 +158,12 @@ def main():
     global rects
     global moves
     global board
-	
-    # detect anchors
+    
+    print 'Starting, please bring window into position'
+    time.sleep(3)
     screen = ap.screen.get_size()
+    print 'Searching for anchor, please stand by. screen size:', screen
+    capture()
     x = y = 0
     for i in range(screen[0]):
         if x == 0 and get_pixel(i, screen[1]/2) == (199, 199, 199):
@@ -151,23 +176,26 @@ def main():
     print "Detected anchor:", anchor
     
     # preparing canvas
-    pygame.init()
-    disp = pygame.display.set_mode([320, 320])
-    pygame.display.set_caption("Bejeweled Blitz Demo")
+    if DRAW_CANVAS:
+        pygame.init()
+        disp = pygame.display.set_mode([320, 320])
+        pygame.display.set_caption("Bejeweled Blitz Demo")
 
 	# play
     print "Starting game!"
-    time.sleep(5)
+    time.sleep(3)
+    click(2, 7) # focus on browser
+    time.sleep(1)
     click(2, 7) # "play now"
     time.sleep(1)
     board = get_board()
     t = time.time()
     
-    while (time.time() - t) < 75:
-        if get_field(2, 4) == (60, 109, 118) or not board_valid(board):
-            break # "time up" board corrupted
+    while (time.time() - t) < MAX_TIME:
+        if get_field(2, 4) == (60, 109, 118) or get_field(4, 6) == (219, 219, 219) or not board_valid(board):
+            break # "time up", "encore" or  board corrupted
         board = get_board()
-        draw_board()
+        if DRAW_CANVAS: draw_board()
         
         # calculate possible moves
         moves = 0
@@ -195,7 +223,6 @@ def main():
                 if same_gem(x, y, x, y-2): # gem in the middle is missing, vertical
                     if same_gem(x, y, x-1, y-1): move_fields(x, y-1, x-1, y-1)
                     if same_gem(x, y, x+1, y-1): move_fields(x, y-1, x+1, y-1)
-					
     print "Game ended."
     
 if __name__ == "__main__":

@@ -8,7 +8,10 @@ Plays an automated game of Bejeweled. Be sure to read the _CAUTION_ section belo
 ## 1. Dependencies
 
 - [autopy](http://www.autopy.org/) - used for accessing mouse/screen (OS independent. Windows installers available)
-- [pygame](http://www.pygame.org/) - used for displaying recognized gems
+- [pygame](http://www.pygame.org/) - optional, used for displaying recognized gems
+- Quartz, `pip install pyobjc-framework-Quartz`
+
+_Please note_: the script is optimized for Mac OS X, which means screenshots could be faster on other systems (Windows, Ubuntu) using autopy itself or another library like pyscreenshot.
 
 ## 2. Anchor and game start
 The game is automatically detected by its border colour, as long as the border of the game is in the following range:
